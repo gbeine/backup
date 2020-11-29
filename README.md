@@ -64,3 +64,11 @@ The backup system is configured through /etc/default/backup
 | daily_backup_tiddlywiki_wiki_dir | "/var/tiddlywiki" | |
 | daily_backup_tiddlywiki_backup_dir | "/var/backups/tiddlywiki" | |
 | daily_backup_tiddlywiki_keep_days | "-14days" | |
+
+### MySQL Setup
+
+* Create a new user (e.g. _backup_)
+** ```CREATE USER '_backup_'@'localhost' IDENTIFIED BY 'password';```
+* Grant the required privileges to the user
+** ```GRANT SELECT, RELOAD, SHOW DATABASES, LOCK TABLES, EVENT ON *.* TO '_backup_'@'localhost';```
+** ```FLUSH PRIVILEGES;```
